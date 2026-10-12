@@ -39,7 +39,8 @@ namespace catSummonMod.Items
 			Projectile.minion = true;
 			Projectile.DamageType = DamageClass.Summon;
 			// Amount of slots this minion occupies from the total minion slots available to the player
-			Projectile.minionSlots = 1f;
+			// Jojo (0.5) plus two kittens (0.25 each) fill one slot per staff use
+			Projectile.minionSlots = 0.5f;
 			// Needed so the minion doesn't despawn on collision with enemies or tiles
 			Projectile.penetrate = -1;
 			//Testing purposes, produces light half the strength of a torch
