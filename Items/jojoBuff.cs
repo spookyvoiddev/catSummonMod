@@ -1,7 +1,4 @@
-using Microsoft.Xna.Framework;
-using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
@@ -9,9 +6,8 @@ namespace catSummonMod.Items
 {
 	public class jojoBuff : ModBuff
 	{
-		public override void SetDefaults() {
-			DisplayName.SetDefault("Jojo the flying cat.");
-			Description.SetDefault("That's a silly question, why does anyone have wings?");
+		public override void SetStaticDefaults() {
+			// Display name and description live in Localization/en-US_Mods.catSummonMod.hjson
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
