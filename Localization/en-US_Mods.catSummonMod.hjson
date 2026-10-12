@@ -1,0 +1,17 @@
+Items: {
+	jojoStaff: {
+		DisplayName: Staff of Jojo
+		Tooltip: This item summons Jojo the flying cat.
+	}
+}
+
+Projectiles: {
+	jojoCat.DisplayName: Jojo, the flying cat!
+}
+
+Buffs: {
+	jojoBuff: {
+		DisplayName: Jojo the flying cat.
+		Description: That's a silly question, why does anyone have wings?
+	}
+}
