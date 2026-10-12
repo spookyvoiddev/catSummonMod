@@ -1,2 +1,2 @@
-Adds the Staff of Jojo, which summons Jojo the flying cat to fight for you.
+Adds the Staff of Jojo, which summons Jojo the flying cat and two kittens to fight for you.
 Craft it from 1 Wood at a Work Bench.

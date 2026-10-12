@@ -17,7 +17,7 @@ namespace catSummonMod.Items
 		}
 
 		public override void SetDefaults() {
-			Item.damage = 30;
+			Item.damage = 8; // Jojo's damage; each kitten does half
 			Item.DamageType = DamageClass.Summon;
 			Item.mana = 5;
 			Item.width = 40;
@@ -47,6 +47,13 @@ namespace catSummonMod.Items
 			// Spawn the minion ourselves so originalDamage is set, which keeps its damage in sync with summon damage bonuses
 			Projectile projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, Main.myPlayer);
 			projectile.originalDamage = Item.damage;
+
+			// Two kittens come along with Jojo, spawned either side of the cursor at half damage
+			int kittenType = ProjectileType<jojoKitten>();
+			for (int i = -1; i <= 1; i += 2) {
+				Projectile kitten = Projectile.NewProjectileDirect(source, position + new Vector2(i * 16f, 0f), velocity, kittenType, damage / 2, knockback / 2f, Main.myPlayer);
+				kitten.originalDamage = Item.damage / 2;
+			}
 
 			return false;
 		}

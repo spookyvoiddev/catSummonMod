@@ -1,11 +1,14 @@
 Items: {
 	jojoStaff: {
 		DisplayName: Staff of Jojo
-		Tooltip: This item summons Jojo the flying cat.
+		Tooltip: This item summons Jojo the flying cat and two kittens.
 	}
 }
 
-Projectiles.jojoCat.DisplayName: Jojo, the flying cat!
+Projectiles: {
+	jojoCat.DisplayName: Jojo, the flying cat!
+	jojoKitten.DisplayName: Jojo's kitten
+}
 
 Buffs: {
 	jojoBuff: {
