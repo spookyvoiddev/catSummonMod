@@ -96,7 +96,7 @@ namespace catSummonMod.Items
 			for (int i = 0; i < Main.maxProjectiles; i++) {
 				// Fix overlap with other minions
 				Projectile other = Main.projectile[i];
-				if (i != Projectile.whoAmI && other.active && other.owner == Projectile.owner && Math.Abs(Projectile.position.X - other.position.X) + Math.Abs(Projectile.position.Y - other.position.Y) < Projectile.width) {
+				if (i != Projectile.whoAmI && other.active && other.minion && other.owner == Projectile.owner && Math.Abs(Projectile.position.X - other.position.X) + Math.Abs(Projectile.position.Y - other.position.Y) < Projectile.width) {
 					if (Projectile.position.X < other.position.X) Projectile.velocity.X -= overlapVelocity;
 					else Projectile.velocity.X += overlapVelocity;
 
@@ -108,12 +108,24 @@ namespace catSummonMod.Items
 
 			#region Find target
 			// Starting search distance
-			float distanceFromTarget = 25f;
+			float distanceFromTarget = 700f;
 			Vector2 targetCenter = Projectile.position;
 			bool foundTarget = false;
 
+			// The player right-clicked an enemy with the staff: attack that one first
+			if (player.HasMinionAttackTargetNPC) {
+				NPC npc = Main.npc[player.MinionAttackTargetNPC];
+				float between = Vector2.Distance(npc.Center, Projectile.Center);
+				// Reasonable distance away so it doesn't target across multiple screens
+				if (between < 2000f) {
+					distanceFromTarget = between;
+					targetCenter = npc.Center;
+					foundTarget = true;
+				}
+			}
+
 			if (!foundTarget) {
-				// This code is required either way, used for finding a target
+				// No marked target: pick the closest enemy within range
 				for (int i = 0; i < Main.maxNPCs; i++) {
 					NPC npc = Main.npc[i];
 					if (npc.CanBeChasedBy()) {
@@ -123,8 +135,9 @@ namespace catSummonMod.Items
 						bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
 						// Additional check for this specific minion behavior, otherwise it will stop attacking once it dashed through an enemy while flying though tiles afterwards
 						// The number depends on various parameters seen in the movement code below. Test different ones out until it works alright
-						bool closeThroughWall = between < 25f;
-						if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall)) {
+						// Must stay above the 50f range where the attack movement stops accelerating
+						bool closeThroughWall = between < 100f;
+						if (((closest && inRange) || (!foundTarget && inRange)) && (lineOfSight || closeThroughWall)) {
 							distanceFromTarget = between;
 							targetCenter = npc.Center;
 							foundTarget = true;
@@ -202,4 +215,4 @@ namespace catSummonMod.Items
 			#endregion
 		}
 	}
-}
+}
