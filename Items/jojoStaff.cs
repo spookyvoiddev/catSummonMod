@@ -53,12 +53,7 @@ namespace catSummonMod.Items
 
 		public override void AddRecipes() {
 			CreateRecipe()
-				.AddIngredient(ItemID.GoldBar, 10)
-				.AddTile(TileID.WorkBenches)
-				.Register();
-
-			CreateRecipe()
-				.AddIngredient(ItemID.PlatinumBar, 10)
+				.AddIngredient(ItemID.Wood, 1)
 				.AddTile(TileID.WorkBenches)
 				.Register();
 		}

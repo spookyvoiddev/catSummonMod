@@ -5,9 +5,7 @@ Items: {
 	}
 }
 
-Projectiles: {
-	jojoCat.DisplayName: Jojo, the flying cat!
-}
+Projectiles.jojoCat.DisplayName: Jojo, the flying cat!
 
 Buffs: {
 	jojoBuff: {
