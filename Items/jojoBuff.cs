@@ -13,7 +13,8 @@ namespace catSummonMod.Items
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
-			if (player.ownedProjectileCounts[ProjectileType<jojoCat>()] > 0) {
+			// Stay active while Jojo or any kitten is still out, so kittens aren't despawned if Jojo is sacrificed first
+			if (player.ownedProjectileCounts[ProjectileType<jojoCat>()] > 0 || player.ownedProjectileCounts[ProjectileType<jojoKitten>()] > 0) {
 				player.buffTime[buffIndex] = 18000;
 			} else {
 				player.DelBuff(buffIndex);

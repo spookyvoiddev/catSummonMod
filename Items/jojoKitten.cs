@@ -13,9 +13,11 @@ namespace catSummonMod.Items
 			Projectile.scale = 0.5f;
 			Projectile.width = 8;
 			Projectile.height = 8;
-			DrawOffsetX = -8;
-			DrawOriginOffsetY = -10;
-			DrawOriginOffsetX = -10;
+			// Scaling happens around the draw origin, so keep Jojo's origin on the sprite and halve its
+			// distance from the hitbox centre instead of halving Jojo's offsets
+			DrawOffsetX = -13;
+			DrawOriginOffsetY = -23;
+			DrawOriginOffsetX = -20;
 			Projectile.minionSlots = 0.25f;
 			Projectile.light = 0.25f;
 		}
