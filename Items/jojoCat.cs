@@ -212,7 +212,7 @@ namespace catSummonMod.Items
 			}
 
 			// Some visuals here
-			Lighting.AddLight(Projectile.Center, Color.White.ToVector3() * 0.78f);
+			Lighting.AddLight(Projectile.Center, Color.White.ToVector3() * 0.78f * Projectile.scale);
 			#endregion
 		}
 	}
